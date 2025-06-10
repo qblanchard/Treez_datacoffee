@@ -1,0 +1,50 @@
+table MeasureParameter
+	isHidden
+	lineageTag: 7325fc86-3622-4863-86d8-95cc38be15d0
+
+	column Paramètre
+		isHidden
+		lineageTag: 89e617b8-2dbf-4c80-95d6-f02315783c7f
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Paramètre Commande'
+
+		relatedColumnDetails
+			groupByColumn: 'Paramètre Champs'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Paramètre Champs'
+		isHidden
+		lineageTag: 903fbb67-9e5a-467c-9df6-d1e2104280f7
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Paramètre Commande'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Paramètre Commande'
+		isHidden
+		formatString: 0
+		lineageTag: f7e89f16-98b4-459f-a499-7d11efb98bde
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasureParameter = calculated
+		mode: import
+		source =
+				{
+				    ("Order Quantity", NAMEOF('Mesures'[Order Quantity]), 0),
+				    ("Sales Amount", NAMEOF('Mesures'[Sales Amount]), 1)
+				}
+
+	annotation PBI_Id = 2c9b3eddce3e430fbcce1f407631506d
+

@@ -1,0 +1,1013 @@
+{
+  "name": "{{Dataset_Name}}",
+  "compatibilityLevel": 1604,
+  "model": {
+    "name": "{{Dataset_Name}}",
+    "culture": "en-US",
+    "collation": "Latin1_General_100_BIN2_UTF8",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "Delta",
+        "sourceLineageTag": "[dbo].[Delta]",
+        "columns": [
+          {
+            "name": "_c0",
+            "dataType": "string",
+            "sourceColumn": "_c0",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "_c0",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "Delta",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "True"
+          }
+        ]
+      },
+      {
+        "name": "fact_SalesOrderDetail",
+        "sourceLineageTag": "[dbo].[fact_SalesOrderDetail]",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "SalesOrderID",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "RevisionNumber",
+            "dataType": "int64",
+            "sourceColumn": "RevisionNumber",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "RevisionNumber",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OrderDate",
+            "dataType": "dateTime",
+            "sourceColumn": "OrderDate",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "OrderDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DueDate",
+            "dataType": "dateTime",
+            "sourceColumn": "DueDate",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "DueDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ShipDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ShipDate",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "ShipDate",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Status",
+            "dataType": "int64",
+            "sourceColumn": "Status",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "Status",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OnlineOrderFlag",
+            "dataType": "int64",
+            "sourceColumn": "OnlineOrderFlag",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "OnlineOrderFlag",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SalesOrderNumber",
+            "dataType": "string",
+            "sourceColumn": "SalesOrderNumber",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "SalesOrderNumber",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "PurchaseOrderNumber",
+            "dataType": "string",
+            "sourceColumn": "PurchaseOrderNumber",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "PurchaseOrderNumber",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "AccountNumber",
+            "dataType": "string",
+            "sourceColumn": "AccountNumber",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "AccountNumber",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "sourceColumn": "CustomerID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "CustomerID",
+            "summarizeBy": "count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ShipToAddressID",
+            "dataType": "int64",
+            "sourceColumn": "ShipToAddressID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ShipToAddressID",
+            "summarizeBy": "count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "BillToAddressID",
+            "dataType": "int64",
+            "sourceColumn": "BillToAddressID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "BillToAddressID",
+            "summarizeBy": "count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ShipMethod",
+            "dataType": "string",
+            "sourceColumn": "ShipMethod",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ShipMethod",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "CreditCardApprovalCode",
+            "dataType": "string",
+            "sourceColumn": "CreditCardApprovalCode",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "CreditCardApprovalCode",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderDetailID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "SalesOrderDetailID",
+            "summarizeBy": "count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OrderQty",
+            "dataType": "int64",
+            "sourceColumn": "OrderQty",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "OrderQty",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ProductID",
+            "summarizeBy": "count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "string",
+            "sourceColumn": "UnitPrice",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "UnitPrice",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "UnitPriceDiscount",
+            "dataType": "string",
+            "sourceColumn": "UnitPriceDiscount",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "UnitPriceDiscount",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LineTotal",
+            "dataType": "double",
+            "sourceColumn": "LineTotal",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "LineTotal",
+            "summarizeBy": "sum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "fact_SalesOrderDetail",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "True"
+          }
+        ]
+      },
+      {
+        "name": "salesorderdetail",
+        "sourceLineageTag": "[dbo].[salesorderdetail]",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderID",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "SalesOrderID",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "sourceColumn": "SalesOrderDetailID",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "SalesOrderDetailID",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OrderQty",
+            "dataType": "int64",
+            "sourceColumn": "OrderQty",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "OrderQty",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "sourceColumn": "ProductID",
+            "formatString": "0",
+            "sourceProviderType": "bigint",
+            "sourceLineageTag": "ProductID",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "string",
+            "sourceColumn": "UnitPrice",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "UnitPrice",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "UnitPriceDiscount",
+            "dataType": "string",
+            "sourceColumn": "UnitPriceDiscount",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "UnitPriceDiscount",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LineTotal",
+            "dataType": "double",
+            "sourceColumn": "LineTotal",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "LineTotal",
+            "summarizeBy": "none",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "salesorderdetail",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "True"
+          }
+        ]
+      },
+      {
+        "name": "view_fact_SalesOrderDetail",
+        "isHidden": true,
+        "sourceLineageTag": "[dbo].[view_fact_SalesOrderDetail]",
+        "columns": [
+          {
+            "name": "SalesOrderID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SalesOrderID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "SalesOrderID",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "RevisionNumber",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "RevisionNumber",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "RevisionNumber",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OrderDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "OrderDate",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "OrderDate",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "DueDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "DueDate",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "DueDate",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ShipDate",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "sourceColumn": "ShipDate",
+            "formatString": "General Date",
+            "sourceProviderType": "datetime2",
+            "sourceLineageTag": "ShipDate",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "Status",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Status",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "Status",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OnlineOrderFlag",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "OnlineOrderFlag",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "OnlineOrderFlag",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SalesOrderNumber",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "SalesOrderNumber",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "SalesOrderNumber",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "PurchaseOrderNumber",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "PurchaseOrderNumber",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "PurchaseOrderNumber",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "AccountNumber",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "AccountNumber",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "AccountNumber",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "CustomerID",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ShipToAddressID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ShipToAddressID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ShipToAddressID",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "BillToAddressID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "BillToAddressID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "BillToAddressID",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ShipMethod",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "ShipMethod",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "ShipMethod",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "CreditCardApprovalCode",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "CreditCardApprovalCode",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "CreditCardApprovalCode",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "SalesOrderDetailID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "SalesOrderDetailID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "SalesOrderDetailID",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "OrderQty",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "OrderQty",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "OrderQty",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductID",
+            "formatString": "0",
+            "sourceProviderType": "int",
+            "sourceLineageTag": "ProductID",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "UnitPrice",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "UnitPrice",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "UnitPriceDiscount",
+            "dataType": "string",
+            "isHidden": true,
+            "sourceColumn": "UnitPriceDiscount",
+            "sourceProviderType": "varchar",
+            "sourceLineageTag": "UnitPriceDiscount",
+            "summarizeBy": "none",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ]
+          },
+          {
+            "name": "LineTotal",
+            "dataType": "double",
+            "isHidden": true,
+            "sourceColumn": "LineTotal",
+            "sourceProviderType": "float",
+            "sourceLineageTag": "LineTotal",
+            "summarizeBy": "sum",
+            "changedProperties": [
+              {
+                "property": "IsHidden"
+              }
+            ],
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "{{Partition_Name}}",
+            "mode": "directLake",
+            "source": {
+              "type": "entity",
+              "entityName": "view_fact_SalesOrderDetail",
+              "expressionSource": "DatabaseQuery",
+              "schemaName": "dbo"
+            }
+          }
+        ],
+        "changedProperties": [
+          {
+            "property": "IsHidden"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "IsTableInBiModel",
+            "value": "True"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "c28b4c902374adf2e86fe5055e11aab7",
+        "fromTable": "fact_SalesOrderDetail",
+        "fromColumn": "SalesOrderID",
+        "toTable": "salesorderdetail",
+        "toColumn": "SalesOrderID"
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DatabaseQuery",
+        "kind": "m",
+        "expression": "let\n    database = {{TDS_Endpoint}}\nin\n    database\n"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "SourceLineageTagType",
+        "value": "DatabaseFullyQualifiedName"
+      }
+    ]
+  }
+}

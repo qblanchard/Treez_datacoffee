@@ -1,0 +1,26 @@
+-- Auto Generated (Do not modify) 1E4B3D904883F4D31F979B3032A5BA1CAAA118DBA19D7741AC9B8FA8C408F349
+CREATE VIEW [view_fact_SalesOrderDetail] AS  
+SELECT
+     h.[SalesOrderID]
+    ,h.[RevisionNumber]
+    ,h.[OrderDate]
+    ,h.[DueDate]
+    ,h.[ShipDate]
+    ,h.[Status]
+    ,h.[OnlineOrderFlag]
+    ,h.[SalesOrderNumber]
+    ,h.[PurchaseOrderNumber]
+    ,h.[AccountNumber]
+    ,h.[CustomerID]
+    ,h.[ShipToAddressID]
+    ,h.[BillToAddressID]
+    ,h.[ShipMethod]
+    ,h.[CreditCardApprovalCode]
+    ,d.[SalesOrderDetailID]
+    ,d.[OrderQty]
+    ,d.[ProductID]
+    ,d.[UnitPrice]
+    ,d.[UnitPriceDiscount]
+    ,d.[LineTotal]
+FROM [operational_data_lakehouse].[dbo].[salesorderheader] h
+INNER JOIN [operational_data_lakehouse].[dbo].[salesorderdetail] d ON d.[SalesOrderID] = h.[SalesOrderID]

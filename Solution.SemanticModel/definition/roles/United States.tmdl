@@ -1,0 +1,11 @@
+role 'United States'
+	modelPermission: read
+
+	tablePermission DimSalesTerritory = [SalesTerritoryCountry] = "United States"
+
+	tablePermission FactInternetSales
+
+		columnPermission SalesAmount = read
+
+	annotation PBI_Id = 9533dd465352467ba3d2a8d32ce5efd5
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "demo event real time"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0a09b0a8-3e29-897f-41bc-aa5c1260e8d4"
+  }
+}

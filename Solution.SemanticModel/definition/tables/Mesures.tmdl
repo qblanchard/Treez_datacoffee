@@ -1,0 +1,195 @@
+table Mesures
+	lineageTag: 3876ce44-a2a0-4299-8763-37f0775fca7d
+
+	measure 'Sales Amount' =
+			
+			SWITCH
+			(TRUE,
+			    ISFILTERED(DimProduct), SUM(FactInternetSales[SalesAmount]),
+			    ISFILTERED(DimProductSubcategory), SUM(FactInternetSales[SalesAmount]),
+			    ISFILTERED(DimPromotion), SUM(FactInternetSales[SalesAmount]),
+			    SUM(AggInternetSales[SalesAmount])
+			)
+		displayFolder: Sales
+		lineageTag: 212e0596-e033-4a80-972f-b25ae632dd88
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Order Quantity' =
+			
+			SWITCH
+			(TRUE,
+			    ISFILTERED(DimProduct), SUM(FactInternetSales[OrderQuantity]),
+			    ISFILTERED(DimProductSubcategory), SUM(FactInternetSales[OrderQuantity]),
+			    ISFILTERED(DimPromotion), SUM(FactInternetSales[OrderQuantity]),
+			    SUM(FactInternetSales[OrderQuantity])
+			)
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: d65124c5-db66-488e-9d10-6bda88dde6fa
+
+	measure 'has internet sales' = IF([Rowcount Internet Sales] > 0, 1, 0)
+		displayFolder: technique
+		lineageTag: 120305e4-0252-4ed2-ab86-c10a6ac5b18b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Nb produits vendus' = ```
+			
+			// écrit simplement : 
+			//DISTINCTCOUNT(FactInternetSales[ProductKey])
+			// équivalent + performant : 
+			COUNTROWS(VALUES(FactInternetSales[ProductKey]))
+			```
+		displayFolder: Sales
+		lineageTag: 0bda9952-86e8-40fd-8c11-3f9ad24341e0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Amount Y-1' =
+			
+			VAR result = CALCULATE([Sales Amount], SAMEPERIODLASTYEAR(DimDate[FullDateAlternateKey]))
+			RETURN
+			IF([Sales Amount], result)
+		displayFolder: Sales
+		lineageTag: 11f2b2b3-6cc4-48aa-81fe-27d80ae2177e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YoY (value)' = ```
+			
+			VAR A = [Sales Amount] 
+			VAR B = [Sales Amount Y-1]
+			VAR C = A - B
+			RETURN C
+			```
+		displayFolder: Sales
+		lineageTag: 93520072-e83d-439d-95f7-a0d27d53b848
+
+		formatStringDefinition = "+#,0.0;#,0.0;0"
+
+	measure 'YoY (%)' = ```
+			
+			VAR __a = [Sales Amount]
+			VAR __b = [Sales Amount Y-1]
+			VAR __result = DIVIDE(__a, __b) - 1
+			RETURN 
+			IF([Sales Amount], __result)
+			```
+		displayFolder: Sales
+		lineageTag: aeea25ce-def2-461d-855b-29197e0b0018
+
+		formatStringDefinition = "+0.0 %;-0.0 %;0.0 %"
+
+	measure 'Rowcount Agg Internet Sales' = COUNTROWS(AggInternetSales)
+		displayFolder: Rowcount
+		lineageTag: e58b68e4-64a7-4185-8c58-9951f47f6d8f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rowcount Internet Sales' = COUNTROWS(FactInternetSales)
+		displayFolder: Rowcount
+		lineageTag: 9e2b9950-349c-4c4e-b70c-bf488ad9155c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MagicRank =
+			
+			VAR __scal1 = RANKX(ALL(DimSalesTerritory), [Sales Amount])
+			VAR __scal2 = RANKX(ALL(DimProductSubcategory), CALCULATE([Sales Amount], ALL(DimSalesTerritory)))
+			VAR __scal3 = SWITCH(true,
+			    ISINSCOPE(DimProductSubcategory[EnglishProductSubcategoryName]), __scal2,
+			    ISINSCOPE(DimSalesTerritory[SalesTerritoryCountry]), __scal1)
+			VAR __result = IF([Sales Amount], __scal3)
+			RETURN __result
+		displayFolder: Sales
+		lineageTag: b7c9038b-2c43-4cf3-9fd0-fa37f92764f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Amount 12 mois glissants' = ```
+			
+			VAR dateMax = LASTDATE(DimDate[FullDateAlternateKey])
+			VAR datePlage = DATESINPERIOD(DimDate[FullDateAlternateKey], dateMax, -12, MONTH) 
+			RETURN
+			IF(ISINSCOPE(DimDate[MonthNumberOfYear]), CALCULATE([Sales Amount], datePlage))
+			```
+		displayFolder: Sales
+		lineageTag: 33eaca06-2ea8-45ad-a710-c6b9e0adbe32
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure __colorSubCategory =
+			
+			SWITCH(TRUE(),
+			    SELECTEDVALUE(DimProductSubcategory[EnglishProductSubcategoryName]) = "Road Bikes", "#FF0000",
+			    SELECTEDVALUE(DimProductSubcategory[EnglishProductSubcategoryName]) = "Mountain Bikes", "#00FF00",
+			    "#0000FF"
+			    )
+		displayFolder: technique
+		lineageTag: 5ace1ce8-7e5c-41b6-9499-c1fc2f6c6997
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Amount PP' =
+			
+			VAR __dateMin = PREVIOUSDAY(FIRSTDATE(DimDate[FullDateAlternateKey]))
+			VAR __dateCount = -1 * COUNTROWS(DimDate)
+			VAR __datePeriod = DATESINPERIOD(DimDate[FullDateAlternateKey], __dateMin, __dateCount, DAY)
+			VAR __result = CALCULATE([Sales Amount], __datePeriod)
+			RETURN __result
+		displayFolder: Sales
+		lineageTag: 40ad0810-f610-4fec-a86f-36db665e82b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YoY (label)' = ```
+			
+			VAR __Measure = [YoY (%)]
+			VAR __Result = 
+			    IF(
+			        __Measure > 0
+			        ,FORMAT(__Measure, "#,0.0%") & " ↑"
+			        ,FORMAT(__Measure, "#,0.0%") & " ↓"
+			    )
+			RETURN __Result
+			```
+		displayFolder: Sales
+		lineageTag: 1a2a75c0-f518-46d8-9ec5-bb909c866da1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YoY (color)' =
+			
+			VAR __measure = [YoY (%)]
+			VAR __result = IF([YoY (%)] > 0, "Green", "Red")
+			RETURN __result
+		displayFolder: Sales
+		lineageTag: d8b84e1b-b975-4f3d-bdac-8db20d818da9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Mesures
+		dataType: string
+		isHidden
+		lineageTag: d7e5c723-f677-4ca0-99e4-bb03d04cb523
+		summarizeBy: none
+		sourceColumn: Mesures
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Mesures = m
+		mode: import
+		queryGroup: technique
+		source =
+				let
+				    Source = ""
+				in
+				    Source
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+

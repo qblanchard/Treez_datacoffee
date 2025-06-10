@@ -1,0 +1,8 @@
+{
+  "version": "4.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../demo event real time.SemanticModel"
+    }
+  }
+}

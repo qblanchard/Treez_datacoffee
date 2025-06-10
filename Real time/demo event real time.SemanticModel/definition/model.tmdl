@@ -1,0 +1,20 @@
+model Model
+	culture: fr
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation ModelPopulated = value
+
+annotation PBI_QueryOrder = ["Kusto Query Result"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.132.1053.0 (24.08)
+
+ref table 'Kusto Query Result'
+
+ref cultureInfo fr
+

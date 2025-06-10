@@ -1,0 +1,11 @@
+role Dynamique
+	modelPermission: read
+
+	tablePermission DimCustomer = [EmailAddress] = USERPRINCIPALNAME()
+
+	tablePermission FactInternetSales
+
+		columnPermission SalesAmount = read
+
+	annotation PBI_Id = 999e4f584b44456eb2fac9883031f60e
+

@@ -1,0 +1,48 @@
+table 'Type mesure'
+	lineageTag: 46377d94-e762-44bb-8fc5-c63167b87cb6
+
+	column 'Type mesure'
+		lineageTag: 6b2e0187-0dc1-4edd-8b30-54f669a344ad
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Type mesure Commande'
+
+		relatedColumnDetails
+			groupByColumn: 'Type mesure Champs'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type mesure Champs'
+		isHidden
+		lineageTag: 125ff7ed-16b4-4765-891d-549b34a37e7d
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Type mesure Commande'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type mesure Commande'
+		isHidden
+		formatString: 0
+		lineageTag: 43106216-08e8-4f92-b065-57641ddb9792
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Type mesure' = calculated
+		mode: import
+		source =
+				{
+				    ("Sales Amount", NAMEOF('Mesures'[Sales Amount]), 0),
+				    ("Order Quantity", NAMEOF('Mesures'[Order Quantity]), 1)
+				}
+
+	annotation PBI_Id = 8eca1a1172094e098a47032b679d95d5
+

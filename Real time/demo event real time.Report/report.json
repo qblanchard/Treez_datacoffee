@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.57\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU08\",\"version\":\"5.58\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU08",
+            "path": "BaseThemes/CY24SU08.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"objects\":{\"pageRefresh\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"duration\":{\"expr\":{\"Literal\":{\"Value\":\"'PT30S'\"}}},\"refreshType\":{\"expr\":{\"Literal\":{\"Value\":\"'CDM'\"}}}}}]}}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "4bf1ba8ba946875c552b",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"b0f6ff23c84d70e4aade\",\"layouts\":[{\"id\":0,\"position\":{\"x\":162.23997814655468,\"y\":153.84825513897425,\"z\":0,\"width\":1004.2096906371645,\"height\":476.0904527760705,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"Kusto Query Result.EventProcessedUtcTime\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(Kusto Query Result.sessionId)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"k\",\"Entity\":\"Kusto Query Result\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"k\"}},\"Property\":\"EventProcessedUtcTime\"},\"Name\":\"Kusto Query Result.EventProcessedUtcTime\",\"NativeReferenceName\":\"EventProcessedUtcTime\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"k\"}},\"Property\":\"sessionId\"}},\"Function\":5},\"Name\":\"CountNonNull(Kusto Query Result.sessionId)\",\"NativeReferenceName\":\"Nombre de sessionId\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"k\"}},\"Property\":\"EventProcessedUtcTime\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"lineStyles\":[{\"properties\":{\"showMarker\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"markerShape\":{\"expr\":{\"Literal\":{\"Value\":\"'x'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 476.09,
+          "width": 1004.21,
+          "x": 162.24,
+          "y": 153.85,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

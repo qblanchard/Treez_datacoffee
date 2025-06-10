@@ -1,0 +1,104 @@
+table AggInternetSales
+	isHidden
+	lineageTag: d9e84a20-658d-443f-909c-902e5a6d55d5
+
+	column OrderDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 50a1fd67-4a0b-4d07-b805-e868aa710d98
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column CustomerKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2a5800a5-c1d6-40a9-9be8-042316b76970
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column SalesTerritoryKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7bf31181-2bfb-4dd2-aeb1-bc15b255bbf3
+		summarizeBy: none
+		sourceColumn: SalesTerritoryKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column CurrencyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 03c7fd89-f6f6-4095-8846-dc5040134470
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 1d46c1dd-5679-41bd-9c7e-e3d722c860fd
+		summarizeBy: sum
+		sourceColumn: Nombre
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesAmount
+		dataType: double
+		isHidden
+		lineageTag: 4be9570e-9996-45f9-97da-f721c25e4ade
+		summarizeBy: sum
+		sourceColumn: SalesAmount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OrderQuantity
+		dataType: double
+		isHidden
+		lineageTag: a946fb4f-6d3c-4de2-b6b0-4b7a8177490c
+		summarizeBy: sum
+		sourceColumn: OrderQuantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition AggInternetSales = m
+		mode: import
+		queryGroup: Faits
+		source =
+				let
+				    Source = FactInternetSales,
+				    #"Lignes groupées" = Table.Group(Source, {"OrderDateKey", "CustomerKey", "SalesTerritoryKey", "CurrencyKey"}, {{"Nombre", each Table.RowCount(_), Int64.Type}, {"SalesAmount", each List.Sum([SalesAmount]), type number}, {"OrderQuantity", each List.Sum([OrderQuantity]), type number}})
+				in
+				    #"Lignes groupées"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+

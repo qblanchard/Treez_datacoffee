@@ -1,0 +1,58 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Dimensions
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Faits
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup Paramètres
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup technique
+
+	annotation PBI_QueryGroupOrder = 3
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.129.1229.0 (24.05)
+
+annotation PBI_QueryOrder = ["FactInternetSales","DimCurrency","DimCustomer","DimDate","DimProduct","DimPromotion","DimSalesTerritory","DimProductSubcategory","server","Mesures","RangeStart","RangeEnd","AggInternetSales"]
+
+annotation __TEdtr = 1
+
+annotation PBI_RemovedChildren = [{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"9d2ff5d8-1b43-48a7-b98e-3f0b3328c627","fromColumnLocalLineageTag":"9d76f90e-e9e3-4eb9-bc53-0c3b69e1feab","toTableLocalLineageTag":"b7ed262c-6934-4571-8e4a-cee93dd3d6a6","toColumnLocalLineageTag":"9cfc69c3-6c54-452c-96d6-bc40c491094b"}},"objectType":"Relationship"},{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"9d2ff5d8-1b43-48a7-b98e-3f0b3328c627","fromColumnLocalLineageTag":"d5d05dee-cabf-4b67-a74c-56541881d052","toTableLocalLineageTag":"b7ed262c-6934-4571-8e4a-cee93dd3d6a6","toColumnLocalLineageTag":"9cfc69c3-6c54-452c-96d6-bc40c491094b"}},"objectType":"Relationship"}]
+
+ref table FactInternetSales
+ref table DimCurrency
+ref table DimCustomer
+ref table DimDate
+ref table DimProduct
+ref table DimPromotion
+ref table DimSalesTerritory
+ref table DimProductSubcategory
+ref table Mesures
+ref table 'Time intelligence'
+ref table AggInternetSales
+ref table MeasureParameter
+ref table AxisParameter
+ref table 'Type mesure'
+ref table Période
+
+ref role France
+ref role 'United States'
+ref role Dynamique
+ref role OLS-SalesAmount
+
+ref cultureInfo fr-FR
+

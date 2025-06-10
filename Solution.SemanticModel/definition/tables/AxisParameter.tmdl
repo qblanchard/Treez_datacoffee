@@ -1,0 +1,51 @@
+table AxisParameter
+	isHidden
+	lineageTag: 52eb846a-300d-4032-8d07-96d183aa148b
+
+	column Paramètre
+		isHidden
+		lineageTag: fc419571-52b9-4af6-abec-88e9202e4a8d
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Paramètre Commande'
+
+		relatedColumnDetails
+			groupByColumn: 'Paramètre Champs'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Paramètre Champs'
+		isHidden
+		lineageTag: 1cdac6d3-feb7-4443-a46b-efef55461377
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Paramètre Commande'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Paramètre Commande'
+		isHidden
+		formatString: 0
+		lineageTag: 1d0c49ba-66e4-4f05-aca8-5f7e598d771f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition AxisParameter = calculated
+		mode: import
+		source =
+				{
+				    ("CalendarYear", NAMEOF('DimDate'[CalendarYear]), 0),
+				    ("SalesTerritoryCountry", NAMEOF('DimSalesTerritory'[SalesTerritoryCountry]), 1),
+				    ("EnglishProductCategoryName", NAMEOF('DimProductSubcategory'[EnglishProductCategoryName]), 2)
+				}
+
+	annotation PBI_Id = f500859b54484e51b24f2697b704dc23
+

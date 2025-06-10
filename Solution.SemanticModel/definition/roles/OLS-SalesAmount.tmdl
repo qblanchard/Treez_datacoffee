@@ -1,0 +1,13 @@
+role OLS-SalesAmount
+	modelPermission: read
+
+	tablePermission FactInternetSales
+
+		columnPermission SalesAmount = none
+
+	tablePermission DimCustomer
+
+	tablePermission DimDate
+
+	annotation PBI_Id = 808b0dd1d44e41368b3389c299ca0f2d
+

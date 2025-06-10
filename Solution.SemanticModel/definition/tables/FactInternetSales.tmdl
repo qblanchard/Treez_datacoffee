@@ -1,0 +1,361 @@
+table FactInternetSales
+	isHidden
+	lineageTag: 9d2ff5d8-1b43-48a7-b98e-3f0b3328c627
+
+	refreshPolicy
+		policyType: basic
+		rollingWindowGranularity: year
+		rollingWindowPeriods: 25
+		incrementalGranularity: month
+		incrementalPeriods: 3
+		sourceExpression =
+			let
+			  Query = "select * from dbo.FactInternetSales where OrderDateKey >= '"& Text.From(Int32.From( DateTime.ToText(RangeStart,"yyyyMMdd") )) &"' and OrderDateKey < '"& Text.From(Int32.From( DateTime.ToText(RangeEnd,"yyyyMMdd") )) &"' ",
+			  Source = Sql.Database(@server,"AdventureWorksDW2017"),
+			  Data = Value.NativeQuery(Source, Query, null, [EnableFolding=false])
+			in
+			  Data
+
+	column ProductKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 28e3e9c6-6b4a-4e95-828d-7485f2cf738a
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fee5f745-6309-4bd0-98fd-36cb8ad00675
+		summarizeBy: none
+		sourceColumn: OrderDateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d5d05dee-cabf-4b67-a74c-56541881d052
+		summarizeBy: count
+		sourceColumn: DueDateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipDateKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9d76f90e-e9e3-4eb9-bc53-0c3b69e1feab
+		summarizeBy: count
+		sourceColumn: ShipDateKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d8823159-2a5e-4d31-a281-cf02031ac186
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PromotionKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3570ab30-386e-41a4-8869-f908bd3fb174
+		summarizeBy: none
+		sourceColumn: PromotionKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6283aac1-441b-4d6e-a38f-b7c0062f2213
+		summarizeBy: none
+		sourceColumn: CurrencyKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 121573a0-841d-41c3-8564-836378d14141
+		summarizeBy: none
+		sourceColumn: SalesTerritoryKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderNumber
+		dataType: string
+		isHidden
+		lineageTag: 6305719b-66ef-4764-bd8e-586dff929d4b
+		summarizeBy: none
+		sourceColumn: SalesOrderNumber
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesOrderLineNumber
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 89f4515a-0b7b-43d8-8c49-9741ce57f622
+		summarizeBy: sum
+		sourceColumn: SalesOrderLineNumber
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column RevisionNumber
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ee4a23ee-0bf3-4faf-8d17-2d55a2439ddf
+		summarizeBy: sum
+		sourceColumn: RevisionNumber
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderQuantity
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d61c88d1-34ab-47a2-8e84-bfab5a8b365f
+		summarizeBy: sum
+		sourceColumn: OrderQuantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: double
+		isHidden
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 3ee0ec45-3c59-4879-9e55-4a6db9382ca5
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column ExtendedAmount
+		dataType: double
+		isHidden
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 920b486f-863b-4eed-83b3-406f7db167f5
+		summarizeBy: sum
+		sourceColumn: ExtendedAmount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column UnitPriceDiscountPct
+		dataType: double
+		isHidden
+		lineageTag: 4d30eafa-05b4-430d-b774-aed14664173b
+		summarizeBy: sum
+		sourceColumn: UnitPriceDiscountPct
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountAmount
+		dataType: double
+		isHidden
+		lineageTag: 37a990c2-4833-4d43-8daa-23f6b44cac6c
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ProductStandardCost
+		dataType: double
+		isHidden
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: e099109a-29d7-49aa-8000-956cb235561b
+		summarizeBy: sum
+		sourceColumn: ProductStandardCost
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column TotalProductCost
+		dataType: double
+		isHidden
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: f3df2be5-175b-45b7-b55f-956e0bc5fadf
+		summarizeBy: sum
+		sourceColumn: TotalProductCost
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column SalesAmount
+		dataType: double
+		isHidden
+		formatString: #,0\ "€";-#,0\ "€";#,0\ "€"
+		lineageTag: d42e9ab0-bf96-4f95-8726-fea88f775ea6
+		summarizeBy: sum
+		sourceColumn: SalesAmount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column TaxAmt
+		dataType: double
+		isHidden
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 2a3ea870-9dab-4736-bb65-1ce73939a21e
+		summarizeBy: sum
+		sourceColumn: TaxAmt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column Freight
+		dataType: double
+		isHidden
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: 53ec2e24-75c5-4672-8dd6-55cd0fc89544
+		summarizeBy: sum
+		sourceColumn: Freight
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"fr-FR"}
+
+	column CarrierTrackingNumber
+		dataType: string
+		isHidden
+		lineageTag: 42426bce-bbd7-4146-b436-05bcd9cb7134
+		summarizeBy: none
+		sourceColumn: CarrierTrackingNumber
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerPONumber
+		dataType: string
+		isHidden
+		lineageTag: 2d7b9a91-1501-4d65-93fc-4dfa85404ce6
+		summarizeBy: none
+		sourceColumn: CustomerPONumber
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: aa354b24-7b02-4520-90c6-24187525bfa7
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDate
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: fba32c21-8ef2-4aff-8ff9-ca3c93700e37
+		summarizeBy: none
+		sourceColumn: DueDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipDate
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 22cd59ce-9105-4d6e-832c-70fde14eddfc
+		summarizeBy: none
+		sourceColumn: ShipDate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactInternetSales = m
+		mode: import
+		source =
+				let
+				  Query = "select * from dbo.FactInternetSales where OrderDateKey >= '"& Text.From(Int32.From( DateTime.ToText(RangeStart,"yyyyMMdd") )) &"' and OrderDateKey < '"& Text.From(Int32.From( DateTime.ToText(RangeEnd,"yyyyMMdd") )) &"' ",
+				  Source = Sql.Database(@server,"AdventureWorksDW2017"),
+				  Data = Value.NativeQuery(Source, Query, null, [EnableFolding=false])
+				in
+				  Data
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_IsMQueryFoldable = True
+

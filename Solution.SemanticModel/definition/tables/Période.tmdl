@@ -1,0 +1,50 @@
+table Période
+	lineageTag: 5ecf0240-8276-4259-8896-898b7b4837d9
+
+	column Période
+		lineageTag: 340aca3c-92a6-4a27-b768-95657ac87374
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Période Commande'
+
+		relatedColumnDetails
+			groupByColumn: 'Période Champs'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Période Champs'
+		isHidden
+		lineageTag: 2fa5de6d-214c-4fb5-ae06-99b324c0cd3d
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Période Commande'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Période Commande'
+		isHidden
+		formatString: 0
+		lineageTag: 51bbaa6d-328a-4aa9-8124-6ea7346d60b2
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Période = calculated
+		mode: import
+		source =
+				{
+				    ("FiscalYear", NAMEOF('DimDate'[FiscalYear]), 0),
+				    ("FiscalSemester", NAMEOF('DimDate'[FiscalSemester]), 1),
+				    ("FiscalQuarter", NAMEOF('DimDate'[FiscalQuarter]), 2),
+				    ("DateKey", NAMEOF('DimDate'[DateKey]), 3)
+				}
+
+	annotation PBI_Id = ba610b69d1db490f9b92ce230ccf4728
+

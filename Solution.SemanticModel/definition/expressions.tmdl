@@ -1,0 +1,22 @@
+expression server = "treez-formations.database.windows.net" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 57500d62-0160-466d-9568-d36e1d6919e6
+	queryGroup: Paramètres
+
+	annotation PBI_ResultType = Text
+
+expression RangeStart = #datetime(1990, 1, 1, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: ffb02217-ab4e-4a81-92c0-bfca5b01e316
+	queryGroup: Paramètres
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = DateTime
+
+expression RangeEnd = #datetime(2025, 12, 31, 0, 0, 0) meta [IsParameterQuery=true, Type="DateTime", IsParameterQueryRequired=true]
+	lineageTag: 6488a32d-fd91-4672-aa5a-9660e53b59a4
+	queryGroup: Paramètres
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = DateTime
+

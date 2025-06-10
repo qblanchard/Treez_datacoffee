@@ -1,0 +1,63 @@
+table DimProductSubcategory
+	lineageTag: 991d2e3d-782e-4dea-8b32-d17b66fc9438
+
+	column ProductSubcategoryKey
+		dataType: int64
+		isKey
+		formatString: 0
+		lineageTag: aac5dafa-c083-4e53-be41-a925f3e8a235
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductSubcategoryAlternateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e6d7615e-7bee-4f64-beed-48c2d5de00ac
+		summarizeBy: none
+		sourceColumn: ProductSubcategoryAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishProductSubcategoryName
+		dataType: string
+		lineageTag: 83dda078-dc9f-49db-9c70-2065aea3e3ab
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: EnglishProductSubcategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductCategoryAlternateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: fe66371c-5efc-4b66-bbc1-2d436f0642b7
+		summarizeBy: none
+		sourceColumn: ProductCategoryAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishProductCategoryName
+		dataType: string
+		lineageTag: 2798e818-651b-4742-b4aa-f49844b14331
+		summarizeBy: none
+		sourceColumn: EnglishProductCategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProductSubcategory = m
+		mode: import
+		queryGroup: Dimensions
+		source =
+				let
+				    Source = Sql.Databases(@server),
+				    AdventureWorksDW2017 = Source{[Name="AdventureWorksDW2017"]}[Data],
+				    dbo_DimProductSubcategory = AdventureWorksDW2017{[Schema="dbo",Item="DimProductSubcategory"]}[Data],
+				    #"Colonnes supprimées" = Table.RemoveColumns(dbo_DimProductSubcategory,{"SpanishProductSubcategoryName", "FrenchProductSubcategoryName", "ProductCategoryKey", "DimProduct"}),
+				    #"DimProductCategory développé" = Table.ExpandRecordColumn(#"Colonnes supprimées", "DimProductCategory", {"ProductCategoryAlternateKey", "EnglishProductCategoryName"}, {"ProductCategoryAlternateKey", "EnglishProductCategoryName"})
+				in
+				    #"DimProductCategory développé"
+
+	annotation PBI_ResultType = Table
+

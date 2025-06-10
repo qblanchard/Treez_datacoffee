@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Delta",
+    "path": "/Tables",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "5a538f82-0ffb-4b91-8497-b78062435d74",
+        "location": "https://adlsfabrictesttreez.dfs.core.windows.net",
+        "subpath": "/fabrictest/Delta"
+      }
+    }
+  },
+  {
+    "name": "Parquet",
+    "path": "/Files",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "5a538f82-0ffb-4b91-8497-b78062435d74",
+        "location": "https://adlsfabrictesttreez.dfs.core.windows.net",
+        "subpath": "/fabrictest/Parquet"
+      }
+    }
+  },
+  {
+    "name": "fabrictest",
+    "path": "/Files",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "5a538f82-0ffb-4b91-8497-b78062435d74",
+        "location": "https://adlsfabrictesttreez.dfs.core.windows.net",
+        "subpath": "/fabrictest"
+      }
+    }
+  }
+]

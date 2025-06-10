@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Warehouse",
+    "displayName": "Sample-Warehouse-Roles"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "83f5fa7d-1c28-b66d-44bc-56059b35f8c4"
+  }
+}

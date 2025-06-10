@@ -1,0 +1,95 @@
+cultureInfo fr-FR
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "dimdate.calendaryear": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimDate",
+			          "ConceptualProperty": "CalendarYear"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Year": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimsalesterritory.salesterritoryregion": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimSalesTerritory",
+			          "ConceptualProperty": "SalesTerritoryRegion"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Region": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimproductsubcategory.englishproductcategoryname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimProductSubcategory",
+			          "ConceptualProperty": "EnglishProductCategoryName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Category": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dimproductsubcategory.englishproductsubcategoryname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DimProductSubcategory",
+			          "ConceptualProperty": "EnglishProductSubcategoryName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "SubCategory": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

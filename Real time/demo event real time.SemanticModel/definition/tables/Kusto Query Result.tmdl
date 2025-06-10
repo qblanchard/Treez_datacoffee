@@ -1,0 +1,186 @@
+table 'Kusto Query Result'
+	lineageTag: a8db04bb-16fd-4a2f-ace9-5b443aaeccff
+
+	measure 'Changer la détection Maximum pour timeStamp' = MAX('Kusto Query Result'[timeStamp])
+		formatString: General Date
+		lineageTag: b58cca5e-ac1a-4cde-85fc-72c09c4ca171
+
+		extendedProperty ChangeDetectionMetadata =
+				{
+				  "version": 0,
+				  "refreshInterval": "PT2S"
+				}
+
+	column timeStamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 41f7eb7e-ce66-42a5-8add-4060450aab83
+		summarizeBy: none
+		sourceColumn: timeStamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column ipAddress
+		dataType: string
+		lineageTag: c79ceb93-3d48-4695-b22e-83b5b94069b9
+		summarizeBy: none
+		sourceColumn: ipAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column userId
+		dataType: string
+		lineageTag: f8fad88a-0cdc-4aee-960e-5815b8b7032d
+		summarizeBy: none
+		sourceColumn: userId
+
+		annotation SummarizationSetBy = Automatic
+
+	column sessionId
+		dataType: string
+		lineageTag: 4eddf1de-3448-420d-a594-dccba7b53318
+		summarizeBy: none
+		sourceColumn: sessionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column path
+		dataType: string
+		lineageTag: 1f2cf0b6-4fe5-4bb9-ad62-749a246efa31
+		summarizeBy: none
+		sourceColumn: path
+
+		annotation SummarizationSetBy = Automatic
+
+	column queryParameters
+		dataType: string
+		lineageTag: c1456e22-d9f9-41b8-b3b2-1f23d3aef774
+		summarizeBy: none
+		sourceColumn: queryParameters
+
+		annotation SummarizationSetBy = Automatic
+
+	column referrerUrl
+		dataType: string
+		lineageTag: ab5e6901-20b3-42cf-b635-67b437619ad5
+		summarizeBy: none
+		sourceColumn: referrerUrl
+
+		annotation SummarizationSetBy = Automatic
+
+	column os
+		dataType: string
+		lineageTag: 3ba60977-2bcb-4b8c-8434-2c16b6b9e92e
+		summarizeBy: none
+		sourceColumn: os
+
+		annotation SummarizationSetBy = Automatic
+
+	column browser
+		dataType: string
+		lineageTag: d4fecaf1-31b8-4bd3-a002-5446fe9b335d
+		summarizeBy: none
+		sourceColumn: browser
+
+		annotation SummarizationSetBy = Automatic
+
+	column timeToCompletePage
+		dataType: int64
+		formatString: 0
+		lineageTag: a629a48f-32e5-43e0-bba1-cb1340a5e342
+		summarizeBy: sum
+		sourceColumn: timeToCompletePage
+
+		annotation SummarizationSetBy = Automatic
+
+	column eventFirstTimestamp
+		dataType: int64
+		formatString: 0
+		lineageTag: 6dbb53d1-8281-4d6b-8e1b-d7a206b4b50d
+		summarizeBy: sum
+		sourceColumn: eventFirstTimestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column eventDuration
+		dataType: int64
+		formatString: 0
+		lineageTag: 432fdb60-9a60-49ca-87a8-cd4741fbd676
+		summarizeBy: sum
+		sourceColumn: eventDuration
+
+		annotation SummarizationSetBy = Automatic
+
+	column eventScore
+		dataType: int64
+		formatString: 0
+		lineageTag: 5452f4a8-3cb1-4bfc-90fe-db5e713ee1e7
+		summarizeBy: sum
+		sourceColumn: eventScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column deviceType
+		dataType: string
+		lineageTag: b4e86c0f-897d-4961-a02b-ffa87ac76aef
+		summarizeBy: none
+		sourceColumn: deviceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column isLead
+		dataType: int64
+		formatString: 0
+		lineageTag: aabc7036-4ef8-422b-a7cd-dde26834b610
+		summarizeBy: sum
+		sourceColumn: isLead
+
+		annotation SummarizationSetBy = Automatic
+
+	column diagnostics
+		dataType: string
+		lineageTag: 8b6f44f3-ebc5-4e5a-be1a-4bd388008a00
+		summarizeBy: none
+		sourceColumn: diagnostics
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventProcessedUtcTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bbbaab93-cdc1-4d0f-a830-f5a9a3c70141
+		summarizeBy: none
+		sourceColumn: EventProcessedUtcTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column PartitionId
+		dataType: int64
+		formatString: 0
+		lineageTag: fe7a115b-5fec-4249-a9f6-5322436dea7b
+		summarizeBy: count
+		sourceColumn: PartitionId
+
+		annotation SummarizationSetBy = Automatic
+
+	column EventEnqueuedUtcTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ba2c2d25-661e-4c45-8b94-0d23ea42fbb4
+		summarizeBy: none
+		sourceColumn: EventEnqueuedUtcTime
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Kusto Query Result' = m
+		mode: directQuery
+		source =
+				let
+				Source = AzureDataExplorer.Contents("https://trd-f29u69ryj87crs84bd.z2.kusto.fabric.microsoft.com", "Eventhouse", "['demo-event-yr']", [MaxRows=null, MaxSize=null, NoTruncate=null, AdditionalSetStatements=null])
+				in
+				Source
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

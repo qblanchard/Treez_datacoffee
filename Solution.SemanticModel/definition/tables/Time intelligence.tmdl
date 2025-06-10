@@ -1,0 +1,53 @@
+table 'Time intelligence'
+	lineageTag: 15f723ab-8164-45ba-b1ce-64b556d86ea6
+
+	calculationGroup
+
+		calculationItem N = SelectedMeasure()
+
+		calculationItem N-1 = ```
+				
+				VAR result = 
+				    CALCULATE
+				    (
+				        SelectedMeasure(), 
+				        SAMEPERIODLASTYEAR('DimDate'[FullDateAlternateKey])
+				    )
+				RETURN
+				IF([Sales Amount], result)
+				```
+
+		calculationItem 'écart N-1 (valeur)' =
+				
+				VAR result = SELECTEDMEASURE() - CALCULATE(SELECTEDMEASURE(), 'Time intelligence'[Name] = "N-1")
+				RETURN
+				IF([Sales Amount], result)
+
+		calculationItem 'écart N-1 (%)' =
+				
+				VAR b = SELECTEDMEASURE()
+				VAR a = CALCULATE(SELECTEDMEASURE(),'Time intelligence'[Name] = "N-1")
+				VAR t = DIVIDE(b, a) - 1
+				RETURN
+				IF(AND(b, a), t)
+
+			formatStringDefinition = "0.0%"
+
+	column Name
+		dataType: string
+		lineageTag: 6c43d981-4840-4ced-b0e7-dd0dab311d3b
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: c1550afb-d489-44fb-aaed-c173f838f419
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
